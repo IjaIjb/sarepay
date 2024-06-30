@@ -1,25 +1,42 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import { Navigate, Route, Routes } from "react-router-dom";
+import Dashboard from "./pages/dashboard/Dashboard";
+import Home from "./pages/dashboard/Home";
+import Business from "./pages/dashboard/business/Business";
+import Disbursement from "./pages/dashboard/disbursement/Disbursement";
+import Collections from "./pages/dashboard/collections/Collections";
+import Commerce from "./pages/dashboard/commerce/Commerce";
+import Loan from "./pages/dashboard/loan/Loan";
+import Settings from "./pages/dashboard/settings/Settings";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <>
+      <Routes>
+        <Route path="/" element={<Navigate to="/dashboard/home" replace />} />
+        {/* <-------- Dashboard Route-------> */}
+        <Route
+          path="/dashboard"
+          element={
+            // <ProtectedRoute >
+            <Dashboard />
+            // {/* </ProtectedRoute> */}
+          }
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          {/* <-------- dashboard -------> */}
+          <Route path="/dashboard/home" element={<Home />} />
+          <Route path="/dashboard/business" element={<Business />} />
+          <Route path="/dashboard/disbursement" element={<Disbursement />} />
+          <Route path="/dashboard/collections" element={<Collections />} />
+          <Route path="/dashboard/commerce" element={<Commerce />} />
+          <Route path="/dashboard/loan" element={<Loan />} />
+          <Route path="/dashboard/settings" element={<Settings />} />
+          {/* <Route path="/dashboard/disbursement" element={<Home />} /> */}
+        </Route>
+      </Routes>
+    </>
   );
 }
 
