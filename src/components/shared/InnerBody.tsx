@@ -4,26 +4,14 @@ import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import Header from "./Header";
 import Sidebar from "../../pages/dashboard/Sidebar/Sidebar";
 import BreadcrumbsDisplay from "../../pages/dashboard/BreadcrumbsDisplay";
-// import { useSelector } from "react-redux";
-// import { toast } from "react-toastify";
 
 const InnerBody = () => {
-  // Side Drawer
-  const navigate = useNavigate();
-
   const [openDrawer, setOpenDrawer] = useState(false);
-  const [theme, setTheme] = useState("");
   const [showNotification, setShowNotification] = useState<boolean>(false);
 
   //open and close sidebar when screensize is less than 1024px
   const [showSideBar, setShowSideBar] = useState(false);
   const [scrollPosition, setScrollPosition] = useState(0);
-
-  // const userEmail = sessionStorage.getItem("userEmail");
-  // const userEmail = useSelector((state: any) => state.global.userEmail);
-  
-  // console.log(userEmail)
-
 
   useEffect(() => {
     const handleScroll = () => {
@@ -84,18 +72,13 @@ const InnerBody = () => {
               ) : (
                 <AiOutlineMenu className="w-4 h-4 md:w-6 md:h-6  font-bold " />
               )}
-              {/* <h1 className=" text-primary text-xl md:text-2xl">
-                {formatedPath}
-              </h1> */}
             </button>
             <div></div>
-            {/* <div className=" relative"> */}
-            <Header />
-            {/* </div> */}
+            <div className=" relative">
+              <Header />
+            </div>
           </div>
         </div>
-        {/* <div className='border-b border-[#E8E9ED] dark:border-darkaccent w-full fixed top-[75px]'></div> */}
-
         <div className=" lg:mx-[3%] mx-[1%]  h-[calc(100vh-75px)] pt-[75px]">
           <BreadcrumbsDisplay />
 

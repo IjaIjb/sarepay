@@ -1,12 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { AiOutlineClose, AiOutlineLogout, AiOutlineMenu } from "react-icons/ai";
-import { IoIosArrowDown, IoIosArrowUp, IoIosSettings } from "react-icons/io";
-import logo from "../../../assets/Frame 1000004781.png"
-import { MdBusinessCenter, MdDashboard, MdOutlineCollections } from "react-icons/md";
+import { IoIosSettings } from "react-icons/io";
+import logo from "../../../assets/Frame 1000004781.png";
+import {
+  MdBusinessCenter,
+  MdDashboard,
+  MdOutlineCollections,
+} from "react-icons/md";
 import { BiTransferAlt } from "react-icons/bi";
 import { CiShop } from "react-icons/ci";
 import { GiExpense } from "react-icons/gi";
+
+
 type Props = {
   toggle: () => void;
   DrawerOpen: boolean;
@@ -19,19 +25,13 @@ const Sidebar = (props: Props) => {
   const pathnames = pathname.split("/").filter((x) => x);
   const [showUser, setShowUser] = useState(false);
 
-  // DrawerToggle
-  const drawerToggle = (section: string) => {
-    // props.open();
-
-    section === "user" ? setShowUser((prev: any) => !prev) : setShowUser(false);
- 
-  };
   // Close all section if side drawer is closed
   useEffect(() => {
     if (props.DrawerOpen === false) {
       setShowUser(false);
     }
   }, [props.DrawerOpen]);
+
   return (
     <aside
       className={`${
@@ -39,24 +39,6 @@ const Sidebar = (props: Props) => {
       } relative bg-primary w-[260px] z-[100] pl-3  border-r border-[#ECEDEF] hide-scrollbar overflow-y-scroll h-full`}
     >
       <div className="flex  items-center justify-between px-2 md:px-4">
-        {/* {props.DrawerOpen ? (
-          <img
-            className="   w-20  md:w-[112px] my-6 h-[23.5px] md:h-[36.6px]"
-            src={logo}
-            alt="logo"
-
-          />
-        ) : (
-          <img
-            className="cursor-pointer  w-[23.5px] md:w-[37.5px] my-6"
-            src={logo}
-            alt="logo"
-            onClick={() => {
-              // setShowInfoTag(false)
-              props.toggle()
-            }}
-          />
-        )} */}
         <div></div>
         <div className="flex justify-center   py-7">
           <Link to="/dashboard/home">
@@ -65,29 +47,22 @@ const Sidebar = (props: Props) => {
         </div>
         <button
           onClick={() => {
-            // setShowInfoTag(false)
             props.toggle();
           }}
           className=""
         >
           {props.DrawerOpen ? (
-            <AiOutlineClose className="w-4 h-4 md:w-6 md:h-6 font-bold " />
+            <AiOutlineClose className="w-4 h-4 md:w-6 text-white md:h-6 font-bold " />
           ) : (
             <AiOutlineMenu className="w-4 h-4 md:w-6 md:h-6  font-bold hidden " />
           )}
         </button>
       </div>
 
-      {/* <div className="flex justify-center border-b mx-[14.5px] py-4">
-        <Link to="/dashboard/home">
-          <img src={logo} alt="Logo" className="w-[100px] h-[37px]" />
-        </Link>
-      </div> */}
       <div className="mt-14">
         <div className="">
           <div className="mb-6">
             <Link to="/dashboard/home" className="relative gap-1  ">
-              {/* {['dashboard', 'home'].every(ai => pathnames.includes(ai)) && <div className="absolute top-0 left-0 h-full rounded-r-[10px] border-[3px] border-primary"></div>} */}
               <div
                 className={`${
                   ["dashboard", "home"].every((ai) => pathnames.includes(ai))
@@ -95,62 +70,42 @@ const Sidebar = (props: Props) => {
                     : " text-[#A4B0C3EF]"
                 } gap-x-4 px-3 flex items-center  rounded-[6px] py-[6px] `}
               >
-                { ["dashboard", "home"].every((ai) => pathnames.includes(ai)) ?
-                <MdDashboard />
-              :
-              <MdDashboard className="text-[#A4B0C3EF]" /> }
-              
-                {/* <img
-                  src={
-                    ["dashboard", "home"].every((ai) => pathnames.includes(ai))
-                      ? dashboardWhite
-                      : dashboard
-                  }
-                  alt="Logo"
-                  className=""
-                /> */}
+                {["dashboard", "home"].every((ai) => pathnames.includes(ai)) ? (
+                  <MdDashboard />
+                ) : (
+                  <MdDashboard className="text-[#A4B0C3EF]" />
+                )}
 
                 <h5 className="text-[20px] font-[500]   ">Dashboard</h5>
               </div>
-              {["dashboard", "home"].every((ai) =>
-                pathnames.includes(ai)
-              ) && (
+              {["dashboard", "home"].every((ai) => pathnames.includes(ai)) && (
                 <div className="absolute top-0 right-0 h-full rounded-l-[10px]  border-[3px] border-`white"></div>
               )}
             </Link>
           </div>
         </div>
-
-
-
       </div>
 
       <div className="mt-6">
         <div className="">
           <div className="mb-6">
             <Link to="/dashboard/business" className="relative gap-1  ">
-              {/* {['dashboard', 'home'].every(ai => pathnames.includes(ai)) && <div className="absolute top-0 left-0 h-full rounded-r-[10px] border-[3px] border-primary"></div>} */}
               <div
                 className={`${
-                  ["dashboard", "business"].every((ai) => pathnames.includes(ai))
+                  ["dashboard", "business"].every((ai) =>
+                    pathnames.includes(ai)
+                  )
                     ? "bg-white text-[#164988] mr-4"
                     : " text-[#A4B0C3EF]"
                 } gap-x-4 px-3 flex items-center  rounded-[6px] py-[6px] `}
               >
-                { ["dashboard", "business"].every((ai) => pathnames.includes(ai)) ?
-                <MdBusinessCenter  />
-              :
-              <MdBusinessCenter  className="text-[#A4B0C3EF]" /> }
-              
-                {/* <img
-                  src={
-                    ["dashboard", "home"].every((ai) => pathnames.includes(ai))
-                      ? dashboardWhite
-                      : dashboard
-                  }
-                  alt="Logo"
-                  className=""
-                /> */}
+                {["dashboard", "business"].every((ai) =>
+                  pathnames.includes(ai)
+                ) ? (
+                  <MdBusinessCenter />
+                ) : (
+                  <MdBusinessCenter className="text-[#A4B0C3EF]" />
+                )}
 
                 <h5 className="text-[20px] font-[500]   ">Your Business</h5>
               </div>
@@ -162,37 +117,28 @@ const Sidebar = (props: Props) => {
             </Link>
           </div>
         </div>
-
-
-
       </div>
 
       <div className="mt-6">
         <div className="">
           <div className="mb-6">
             <Link to="/dashboard/disbursement" className="relative gap-1  ">
-              {/* {['dashboard', 'home'].every(ai => pathnames.includes(ai)) && <div className="absolute top-0 left-0 h-full rounded-r-[10px] border-[3px] border-primary"></div>} */}
               <div
                 className={`${
-                  ["dashboard", "disbursement"].every((ai) => pathnames.includes(ai))
+                  ["dashboard", "disbursement"].every((ai) =>
+                    pathnames.includes(ai)
+                  )
                     ? "bg-white text-[#164988] mr-4"
                     : " text-[#A4B0C3EF]"
                 } gap-x-4 px-3 flex items-center  rounded-[6px] py-[6px] `}
               >
-                { ["dashboard", "disbursement"].every((ai) => pathnames.includes(ai)) ?
-                <BiTransferAlt />
-              :
-              <BiTransferAlt  className="text-[#A4B0C3EF]" /> }
-              
-                {/* <img
-                  src={
-                    ["dashboard", "home"].every((ai) => pathnames.includes(ai))
-                      ? dashboardWhite
-                      : dashboard
-                  }
-                  alt="Logo"
-                  className=""
-                /> */}
+                {["dashboard", "disbursement"].every((ai) =>
+                  pathnames.includes(ai)
+                ) ? (
+                  <BiTransferAlt />
+                ) : (
+                  <BiTransferAlt className="text-[#A4B0C3EF]" />
+                )}
 
                 <h5 className="text-[20px] font-[500]   ">Disbursement</h5>
               </div>
@@ -204,37 +150,28 @@ const Sidebar = (props: Props) => {
             </Link>
           </div>
         </div>
-
-
-
       </div>
 
       <div className="mt-6">
         <div className="">
           <div className="mb-6">
             <Link to="/dashboard/collections" className="relative gap-1  ">
-              {/* {['dashboard', 'home'].every(ai => pathnames.includes(ai)) && <div className="absolute top-0 left-0 h-full rounded-r-[10px] border-[3px] border-primary"></div>} */}
               <div
                 className={`${
-                  ["dashboard", "collections"].every((ai) => pathnames.includes(ai))
+                  ["dashboard", "collections"].every((ai) =>
+                    pathnames.includes(ai)
+                  )
                     ? "bg-white text-[#164988] mr-4"
                     : " text-[#A4B0C3EF]"
                 } gap-x-4 px-3 flex items-center  rounded-[6px] py-[6px] `}
               >
-                { ["dashboard", "collections"].every((ai) => pathnames.includes(ai)) ?
-               <MdOutlineCollections />
-              :
-              <MdOutlineCollections  className="text-[#A4B0C3EF]" /> }
-              
-                {/* <img
-                  src={
-                    ["dashboard", "home"].every((ai) => pathnames.includes(ai))
-                      ? dashboardWhite
-                      : dashboard
-                  }
-                  alt="Logo"
-                  className=""
-                /> */}
+                {["dashboard", "collections"].every((ai) =>
+                  pathnames.includes(ai)
+                ) ? (
+                  <MdOutlineCollections />
+                ) : (
+                  <MdOutlineCollections className="text-[#A4B0C3EF]" />
+                )}
 
                 <h5 className="text-[20px] font-[500]   ">Collections</h5>
               </div>
@@ -246,38 +183,28 @@ const Sidebar = (props: Props) => {
             </Link>
           </div>
         </div>
-
-
-
       </div>
 
       <div className="mt-6">
         <div className="">
           <div className="mb-6">
             <Link to="/dashboard/commerce" className="relative gap-1  ">
-              {/* {['dashboard', 'home'].every(ai => pathnames.includes(ai)) && <div className="absolute top-0 left-0 h-full rounded-r-[10px] border-[3px] border-primary"></div>} */}
               <div
                 className={`${
-                  ["dashboard", "commerce"].every((ai) => pathnames.includes(ai))
+                  ["dashboard", "commerce"].every((ai) =>
+                    pathnames.includes(ai)
+                  )
                     ? "bg-white text-[#164988] mr-4"
                     : " text-[#A4B0C3EF]"
                 } gap-x-4 px-3 flex items-center  rounded-[6px] py-[6px] `}
               >
-                { ["dashboard", "commerce"].every((ai) => pathnames.includes(ai)) ?
-              <CiShop />
-
-              :
-              <CiShop  className="text-[#A4B0C3EF]" /> }
-              
-                {/* <img
-                  src={
-                    ["dashboard", "home"].every((ai) => pathnames.includes(ai))
-                      ? dashboardWhite
-                      : dashboard
-                  }
-                  alt="Logo"
-                  className=""
-                /> */}
+                {["dashboard", "commerce"].every((ai) =>
+                  pathnames.includes(ai)
+                ) ? (
+                  <CiShop />
+                ) : (
+                  <CiShop className="text-[#A4B0C3EF]" />
+                )}
 
                 <h5 className="text-[20px] font-[500]   ">E-commerce</h5>
               </div>
@@ -289,16 +216,12 @@ const Sidebar = (props: Props) => {
             </Link>
           </div>
         </div>
-
-
-
       </div>
 
       <div className="mt-6">
         <div className="">
           <div className="mb-6">
             <Link to="/dashboard/loan" className="relative gap-1  ">
-              {/* {['dashboard', 'home'].every(ai => pathnames.includes(ai)) && <div className="absolute top-0 left-0 h-full rounded-r-[10px] border-[3px] border-primary"></div>} */}
               <div
                 className={`${
                   ["dashboard", "loan"].every((ai) => pathnames.includes(ai))
@@ -306,61 +229,41 @@ const Sidebar = (props: Props) => {
                     : " text-[#A4B0C3EF]"
                 } gap-x-4 px-3 flex items-center  rounded-[6px] py-[6px] `}
               >
-                { ["dashboard", "loan"].every((ai) => pathnames.includes(ai)) ?
-               <GiExpense />
-              :
-              <GiExpense className="text-[#A4B0C3EF]" /> }
-              
-                {/* <img
-                  src={
-                    ["dashboard", "home"].every((ai) => pathnames.includes(ai))
-                      ? dashboardWhite
-                      : dashboard
-                  }
-                  alt="Logo"
-                  className=""
-                /> */}
+                {["dashboard", "loan"].every((ai) => pathnames.includes(ai)) ? (
+                  <GiExpense />
+                ) : (
+                  <GiExpense className="text-[#A4B0C3EF]" />
+                )}
 
                 <h5 className="text-[20px] font-[500]   ">Loan</h5>
               </div>
-              {["dashboard", "loan"].every((ai) =>
-                pathnames.includes(ai)
-              ) && (
+              {["dashboard", "loan"].every((ai) => pathnames.includes(ai)) && (
                 <div className="absolute top-0 right-0 h-full rounded-l-[10px]  border-[3px] border-`white"></div>
               )}
             </Link>
           </div>
         </div>
-
-
-
       </div>
       <div className="mt-6">
         <div className="">
           <div className="mb-6">
             <Link to="/dashboard/settings" className="relative gap-1  ">
-              {/* {['dashboard', 'home'].every(ai => pathnames.includes(ai)) && <div className="absolute top-0 left-0 h-full rounded-r-[10px] border-[3px] border-primary"></div>} */}
               <div
                 className={`${
-                  ["dashboard", "settings"].every((ai) => pathnames.includes(ai))
+                  ["dashboard", "settings"].every((ai) =>
+                    pathnames.includes(ai)
+                  )
                     ? "bg-white text-[#164988] mr-4"
                     : " text-[#A4B0C3EF]"
                 } gap-x-4 px-3 flex items-center  rounded-[6px] py-[6px] `}
               >
-                { ["dashboard", "settings"].every((ai) => pathnames.includes(ai)) ?
-               <IoIosSettings />
-              :
-              <IoIosSettings className="text-[#A4B0C3EF]" /> }
-              
-                {/* <img
-                  src={
-                    ["dashboard", "home"].every((ai) => pathnames.includes(ai))
-                      ? dashboardWhite
-                      : dashboard
-                  }
-                  alt="Logo"
-                  className=""
-                /> */}
+                {["dashboard", "settings"].every((ai) =>
+                  pathnames.includes(ai)
+                ) ? (
+                  <IoIosSettings />
+                ) : (
+                  <IoIosSettings className="text-[#A4B0C3EF]" />
+                )}
 
                 <h5 className="text-[20px] font-[500]   ">Settings</h5>
               </div>
@@ -372,43 +275,22 @@ const Sidebar = (props: Props) => {
             </Link>
           </div>
         </div>
-
-
-
       </div>
-
 
       <div className="mt-16">
         <div className="">
           <div className="mb-6">
-            <div  className="relative gap-1  ">
-              {/* {['dashboard', 'home'].every(ai => pathnames.includes(ai)) && <div className="absolute top-0 left-0 h-full rounded-r-[10px] border-[3px] border-primary"></div>} */}
+            <div className="relative gap-1  ">
               <div
-                className={`${
-                    " text-[#A4B0C3EF]"
-                } gap-x-4 px-3 flex items-center  rounded-[6px] py-[6px] `}
+                className={`${" text-[#A4B0C3EF]"} gap-x-4 px-3 flex items-center  rounded-[6px] py-[6px] `}
               >
-
-              <AiOutlineLogout />
-            
-                {/* <img
-                  src={
-                    ["dashboard", "home"].every((ai) => pathnames.includes(ai))
-                      ? dashboardWhite
-                      : dashboard
-                  }
-                  alt="Logo"
-                  className=""
-                /> */}
+                <AiOutlineLogout />
 
                 <h5 className="text-[20px] font-[500]   ">Logout</h5>
               </div>
             </div>
           </div>
         </div>
-
-
-
       </div>
     </aside>
   );

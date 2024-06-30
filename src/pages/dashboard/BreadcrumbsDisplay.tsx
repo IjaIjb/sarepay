@@ -1,7 +1,6 @@
 import React from "react";
-import { Breadcrumbs, Link, Typography } from "@material-ui/core";
+import { Breadcrumbs, Link } from "@material-ui/core";
 import { useLocation, useNavigate } from "react-router-dom";
-// import back from "../../assets/navigateback.svg";
 import { capitalizeFirstLetter } from "./Dashboard";
 
 const BreadcrumbsDisplay = () => {
@@ -16,11 +15,6 @@ const BreadcrumbsDisplay = () => {
 
   return (
     <div className="py-6  pl-[2%] text-[#958F8F]  flex items-center gap-6">
-      {/* <img
-        src={back}
-        onClick={() => navigate(-1)}
-        className=" cursor-pointer"
-      /> */}
       {!pathname.includes("/dashboard/cards/") &&
         !pathname.includes("/dashboard/invoice/edit") && (
           <Breadcrumbs aria-label="breadcrumb" separator="›">
